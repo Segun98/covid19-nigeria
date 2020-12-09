@@ -1,38 +1,261 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,400&display=swap');
+
+/* GLOBALS  */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --box: 0 1px 6px 0;
+  --softgrey: rgba(32, 33, 36, 0.28);
+  --text: #626262;
+  --deepblue: #02247a;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+a {
+  text-decoration: none;
+}
+
+
+/* HEADER COMPONENT STYLES  */
+
+.header {
+  box-shadow: var(--box) var(--softgrey);
+}
+
+header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin: auto;
+  width: 95%;
+  padding: 10px 0;
+}
+
+.logo {
+  color: var(--deepblue);
+  font-weight: bold;
+}
+
+.ncdc-link {
+  background: var(--deepblue);
+  padding: 7px 20px;
+  border-radius: 5px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+@media only screen and (min-width:1000px) {
+  header {
+    width: 85%;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+@media only screen and (min-width:1800px) {
+  header {
+    width: 60%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+}
+
+/* END  */
+
+
+/* WRAPS OVERVIEW AND STATES COMPONENTS  */
+.ui-wrap {
+  margin: auto;
+  width: 95%;
+}
+
+@media only screen and (min-width:700px) {
+  .ui-wrap {
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width:1000px) {
+  .ui-wrap {
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width:1800px) {
+  .ui-wrap {
+    width: 60%;
+  }
+}
+
+/* END  */
+
+
+/* OVERVIEW COMPONENT  */
+
+.search {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.search input {
+  border: 0.5px solid var(--softgrey);
+  padding: 10px 5px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.search button {
+  background: var(--deepblue);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 15px;
+  margin-left: 5px;
+}
+
+.overview-items {
+  display: grid;
+  display: -moz-grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+  color: white;
+  font-weight: bold;
+}
+
+.box {
+  border-radius: 7px;
+  padding: 20px;
+}
+
+.box p {
+  font-size: 1.5rem;
+  padding: 5px 0;
+}
+
+.box:hover {
+  box-shadow: var(--box) var(--softgrey);
+}
+
+.overview-items .box:first-child {
+  background: rgb(4, 146, 194)
+}
+
+.overview-items .box:nth-child(2) {
+  background: rgb(255, 200, 45)
+}
+
+.overview-items .box:nth-child(3) {
+  background: rgb(19, 135, 80)
+}
+
+.overview-items .box:nth-child(4) {
+  background: rgb(255, 0, 0)
+}
+
+.overview-items .box:last-child {
+  background: rgb(159, 154, 115)
+}
+
+@media only screen and (min-width:1200px) {
+  .overview-items {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+  }
+
+  .box p {
+    font-size: 1.8rem;
+  }
+}
+
+
+@media only screen and (min-width:1800px) {
+  .overview-items {
+    grid-template-columns: repeat(4, 1fr);
+    margin: 40px 0;
+  }
+
+  .box p {
+    font-size: 1.9rem;
+  }
+}
+
+/* END  */
+
+
+/* STATES COMPONENT STYLES  */
+
+table {
+  border-spacing: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+td:nth-child(4) {
+  font-weight: bold;
+}
+
+th {
+  font-size: 0.8rem;
+  background-color: #f2f2f2;
+  text-align: center;
+  font-weight: 900;
+}
+
+td {
+  font-size: 0.8rem;
+  padding: 5px 0;
+  text-align: center;
+}
+
+@media only screen and (min-width: 700px) {
+  td {
+    padding: 5px 10px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  td {
+    padding: 10px 10px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  td {
+    padding: 10px 10px;
+    font-size: 1rem;
+  }
+
+  th {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  td {
+    font-size: 1.2rem;
+  }
+
+  th {
+    font-size: 1.3rem;
   }
 }
