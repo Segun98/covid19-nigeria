@@ -40,6 +40,12 @@ const Overview = ({ data, loading, error, search, setSearch, Filter }) => {
         />
         <button type="submit">Search</button>
       </form>
+
+      {error && (
+        <p style={{ textAlign: "center", margin: "20px 0" }}>
+          An error occured... Please refresh the page
+        </p>
+      )}
     </section>
   );
 };
