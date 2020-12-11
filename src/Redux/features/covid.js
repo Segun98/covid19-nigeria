@@ -15,6 +15,11 @@ const covidSlice = createSlice({
     name: "covid",
     initialState,
     reducers: {
+        load(state, action) {
+            state.data = {};
+            state.loading = true;
+            state.error = ""
+        },
         getCovidData(state, action) {
             //Payload from thunk
             let data = action.payload;
@@ -37,12 +42,14 @@ export default covidSlice.reducer;
 const {
     getCovidData,
     errorResponse,
+    load
 } = covidSlice.actions;
 
 // fetch covid data thunk
 export function covidThunk() {
     return async (dispatch) => {
         try {
+            dispatch(load())
             const res = await axios.get(`https://covidnigeria.herokuapp.com/api`)
             const data = res.data.data
             dispatch(getCovidData(data))

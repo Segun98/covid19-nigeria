@@ -9,16 +9,20 @@ import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
+  //redux store
   const { data, loading, error } = useSelector((state) => state);
 
   //centralising States data in main app component to implement a manual search functionality
   const [statesData, setStatesData] = useState([]);
+  //search state
   const [search, setSearch] = useState("");
 
+  //fetch data
   useEffect(() => {
     dispatch(covidThunk());
   }, [dispatch]);
 
+  //set state data from redux store
   useEffect(() => {
     setStatesData(data.states || []);
   }, [data.states]);

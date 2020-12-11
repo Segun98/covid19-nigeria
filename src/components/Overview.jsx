@@ -1,10 +1,10 @@
 import React from "react";
 import { Commas } from "../Utils/helpers";
 
-const Overview = ({ data, loading, error, search, setSearch, Filter }) => {
+const Overview = ({ data, error, search, setSearch, Filter }) => {
   return (
     <section className="overview">
-      {!loading && !error && (
+      {!error && (
         <div className="overview-items">
           <div className="box">
             <h5>Total Confirmed Cases</h5>
