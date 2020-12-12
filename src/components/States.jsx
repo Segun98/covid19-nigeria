@@ -33,7 +33,16 @@ const States = ({ data, loading, error }) => {
       )}
       {/* loading indicator */}
       {loading && (
-        <div style={{ textAlign: "center", padding: "20px 0" }}>Loading...</div>
+        <div
+          style={{
+            textAlign: "center",
+            padding: "20px 0",
+            fontWeight: "bold",
+            color: "#02247a",
+          }}
+        >
+          Loading...
+        </div>
       )}
       {/* AN EMPTY SPACE TO PUSH DOWN THE FOOTER WHEN A USER SEARCHES  */}
       {data && data.length < 20 && (
