@@ -1,7 +1,11 @@
 import React from "react";
 import { Commas } from "../Utils/helpers";
+import { useSelector } from "react-redux";
 
-const Overview = ({ data, error, search, setSearch, Filter }) => {
+const Overview = () => {
+  //redux store
+  const { data, error } = useSelector((state) => state);
+
   return (
     <section className="overview">
       {!error && (
@@ -28,18 +32,6 @@ const Overview = ({ data, error, search, setSearch, Filter }) => {
           </div>
         </div>
       )}
-
-      <form className="search" onSubmit={Filter}>
-        <input
-          type="search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          title="search"
-          placeholder="Search states..."
-          aria-label="search states"
-        />
-        <button type="submit">Search</button>
-      </form>
 
       {error && (
         <p style={{ textAlign: "center", margin: "20px 0" }}>

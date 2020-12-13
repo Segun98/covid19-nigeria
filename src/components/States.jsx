@@ -1,8 +1,57 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { covidThunk } from "../Redux/features/covid";
 
-const States = ({ data, loading, error }) => {
+const States = () => {
+  const dispatch = useDispatch();
+  //redux store
+  const { data, loading, error } = useSelector((state) => state);
+
+  //set state data from redux store
+  useEffect(() => {
+    setStatesData(data.states || []);
+  }, [data.states]);
+
+  //putting states data from redux here to easily implement search functionality
+
+  const [statesData, setStatesData] = useState([]);
+
+  //search state
+  const [search, setSearch] = useState("");
+
+  //manual search
+  function Filter(e) {
+    e.preventDefault();
+    //refetch all data if no text
+    if (!search) {
+      return dispatch(covidThunk());
+    }
+
+    const result = data.states.filter(
+      (s) => s.state.toLowerCase() === search.toLowerCase()
+    );
+
+    //if no result, refecth all data
+    if (result.length === 0) {
+      return dispatch(covidThunk());
+    }
+    setStatesData(result);
+  }
+
   return (
     <section className="states">
+      <form className="search" onSubmit={Filter}>
+        <input
+          type="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          title="search"
+          placeholder="Search states..."
+          aria-label="search states"
+        />
+        <button type="submit">Search</button>
+      </form>
+
       {!error && (
         <table
           style={{
@@ -19,7 +68,7 @@ const States = ({ data, loading, error }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((s) => (
+            {statesData.map((s) => (
               <tr key={s._id}>
                 <td>{s.state}</td>
                 <td>{s.confirmedCases}</td>
@@ -45,7 +94,7 @@ const States = ({ data, loading, error }) => {
         </div>
       )}
       {/* AN EMPTY SPACE TO PUSH DOWN THE FOOTER WHEN A USER SEARCHES  */}
-      {data && data.length < 20 && (
+      {statesData.length < 20 && (
         <div
           style={{
             marginBottom: "500px",
