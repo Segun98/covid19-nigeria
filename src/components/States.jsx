@@ -40,18 +40,19 @@ const States = () => {
 
   return (
     <section className="states">
-      <form className="search" onSubmit={Filter}>
-        <input
-          type="search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          title="search"
-          placeholder="Search states..."
-          aria-label="search states"
-        />
-        <button type="submit">Search</button>
-      </form>
-
+      {!error && (
+        <form className="search" onSubmit={Filter}>
+          <input
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            title="search"
+            placeholder="Search states..."
+            aria-label="search states"
+          />
+          <button type="submit">Search</button>
+        </form>
+      )}
       {!error && (
         <table
           style={{
